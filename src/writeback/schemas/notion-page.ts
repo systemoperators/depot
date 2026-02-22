@@ -1,0 +1,60 @@
+import type { ConnectorSchema } from '../types.js';
+
+export const NOTION_PAGE_SCHEMA: ConnectorSchema = {
+  connector: 'notion',
+  entityType: 'notion_page',
+  frontmatterNamespace: 'notion',
+  updateMethod: 'updatePageProperties',
+  entityIdField: 'source_ref',
+  connectionIdSource: 'item_connectionId',
+  fields: [
+    {
+      markdownField: 'title',
+      location: 'body_title',
+      apiField: 'title',
+      direction: 'readwrite',
+      resolution: 'direct',
+      valueType: 'string',
+    },
+    {
+      markdownField: 'archived',
+      location: 'frontmatter',
+      apiField: 'archived',
+      direction: 'readwrite',
+      resolution: 'direct',
+      valueType: 'boolean',
+    },
+    {
+      markdownField: 'icon',
+      location: 'frontmatter',
+      apiField: 'icon',
+      direction: 'readwrite',
+      resolution: 'direct',
+      valueType: 'string',
+    },
+    {
+      markdownField: 'cover',
+      location: 'frontmatter',
+      apiField: 'cover',
+      direction: 'readwrite',
+      resolution: 'direct',
+      valueType: 'string',
+    },
+    {
+      markdownField: 'body',
+      location: 'block_content',
+      apiField: 'blocks',
+      direction: 'readwrite',
+      resolution: 'block_diff',
+      valueType: 'string',
+    },
+    {
+      markdownField: 'is_database',
+      location: 'frontmatter',
+      apiField: 'is_database',
+      direction: 'read',
+      resolution: 'direct',
+      valueType: 'boolean',
+    },
+  ],
+};
